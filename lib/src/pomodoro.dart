@@ -2,8 +2,12 @@
 // Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:flutter_test/flutter_test.dart';
+import 'package:pomodoro4d/src/break_support.dart';
 
-void main() {
-  test('adds one to input values', () {});
+abstract class Pomodoro extends BreakSupport {
+  bool performs();
+
+  void stop();
+
+  void reset();
 }
