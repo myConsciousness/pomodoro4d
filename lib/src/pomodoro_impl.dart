@@ -85,6 +85,8 @@ class PomodoroImpl extends Pomodoro {
       this._counter.increment();
       this._pomodoroState = PomodoroState.BREAKING;
     }
+
+    this._restartStopwatch();
   }
 
   @override
@@ -95,6 +97,8 @@ class PomodoroImpl extends Pomodoro {
     } else {
       this._pomodoroState = PomodoroState.CONCENTRATING;
     }
+
+    this._restartStopwatch();
   }
 
   @override
@@ -109,5 +113,11 @@ class PomodoroImpl extends Pomodoro {
     if (this.shouldEndBreak()) {
       this.endBreak();
     }
+  }
+
+  /// Restarts the stopwatch
+  void _restartStopwatch() {
+    this._stopwatch.reset();
+    this._stopwatch.start();
   }
 }
