@@ -2,8 +2,12 @@
 // Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:pomodoro4d/src/config/basic_configuration.dart';
+
 /// The class that represents the configuration that Pomodoro refers to at runtime.
 abstract class Configuration {
+  factory Configuration() => BasicConfiguration.newInstance();
+
   /// Sets the [concentrationMinutes] and returns this instance.
   Configuration setConcentrationMinutes(int concentrationMinutes);
 
