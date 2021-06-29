@@ -18,7 +18,7 @@ import 'package:pomodoro4d/src/config/configuration.dart';
 /// | breakMinutes             | 5                 | Minutes |
 /// | longerBreakMinutes       | 15                | Minutes |
 /// | countUntilLongerBreak    | 4                 | Counts  |
-class BasicConfiguration extends Configuration {
+class BasicConfiguration implements Configuration {
   /// Returns the new instance of [BasicConfiguration].
   BasicConfiguration.newInstance();
 

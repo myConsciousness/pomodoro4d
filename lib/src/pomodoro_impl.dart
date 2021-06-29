@@ -2,22 +2,20 @@
 // Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-library pomodoro4d;
-
 import 'package:pomodoro4d/src/break_counter.dart';
 import 'package:pomodoro4d/src/config/configuration.dart';
 import 'package:pomodoro4d/src/pomodoro.dart';
 import 'package:pomodoro4d/src/pomodoro_state.dart';
 
-class PomodoroImpl extends Pomodoro {
+class PomodoroImpl implements Pomodoro {
   /// The configuration
-  Configuration _configuration;
+  final Configuration _configuration;
 
   /// The stopwatch
-  Stopwatch _stopwatch = new Stopwatch();
+  final Stopwatch _stopwatch = new Stopwatch();
 
   /// The break counter
-  BreakCounter _counter = BreakCounter.newInstance();
+  final BreakCounter _counter = BreakCounter.newInstance();
 
   /// The pomodoro state
   PomodoroState _pomodoroState = PomodoroState.INITIALIZED;
@@ -25,6 +23,9 @@ class PomodoroImpl extends Pomodoro {
   /// Returns the new instance of [PomodoroImpl] based on the [configuration] passed as an argument.
   PomodoroImpl.from(Configuration configuration)
       : this._configuration = configuration;
+
+  /// Returns the pomodoro state
+  PomodoroState get pomodoroState => this._pomodoroState;
 
   @override
   bool performs() {
