@@ -18,37 +18,37 @@ class PomodoroImpl implements Pomodoro {
   final BreakCounter _counter = BreakCounter.newInstance();
 
   /// The pomodoro state
-  PomodoroState _pomodoroState = PomodoroState.INITIALIZED;
+  PomodoroState _state = PomodoroState.INITIALIZED;
 
   /// Returns the new instance of [PomodoroImpl] based on the [configuration] passed as an argument.
   PomodoroImpl.from(Configuration configuration)
       : this._configuration = configuration;
 
   /// Returns the pomodoro state
-  PomodoroState get pomodoroState => this._pomodoroState;
+  PomodoroState get state => this._state;
 
   @override
   bool performs() {
-    if (this._pomodoroState == PomodoroState.INITIALIZED) {
+    if (this._state == PomodoroState.INITIALIZED) {
       this._stopwatch.start();
-      this._pomodoroState = PomodoroState.CONCENTRATING;
+      this._state = PomodoroState.CONCENTRATING;
     }
 
-    return this._pomodoroState != PomodoroState.INITIALIZED &&
-        this._pomodoroState != PomodoroState.FINISHED;
+    return this._state != PomodoroState.INITIALIZED &&
+        this._state != PomodoroState.FINISHED;
   }
 
   @override
   void reset() {
     this._stopwatch.reset();
     this._counter.reset();
-    this._pomodoroState = PomodoroState.INITIALIZED;
+    this._state = PomodoroState.INITIALIZED;
   }
 
   @override
   void stop() {
     this._stopwatch.stop();
-    this._pomodoroState = PomodoroState.STOPPED;
+    this._state = PomodoroState.STOPPED;
   }
 
   @override
@@ -60,13 +60,13 @@ class PomodoroImpl implements Pomodoro {
 
   @override
   bool isBreaking() {
-    return this._pomodoroState == PomodoroState.BREAKING ||
-        this._pomodoroState == PomodoroState.LONGER_BREAKING;
+    return this._state == PomodoroState.BREAKING ||
+        this._state == PomodoroState.LONGER_BREAKING;
   }
 
   @override
   bool shouldEndBreak() {
-    if (this._pomodoroState == PomodoroState.LONGER_BREAKING) {
+    if (this._state == PomodoroState.LONGER_BREAKING) {
       return Duration(microseconds: this._stopwatch.elapsedMicroseconds)
               .inMinutes >=
           this._configuration.getLongerBreakMinutes();
@@ -81,10 +81,10 @@ class PomodoroImpl implements Pomodoro {
   void startBreak() {
     if (this._counter.count >= this._configuration.getCountUntilLongerBreak()) {
       this._counter.increment();
-      this._pomodoroState = PomodoroState.LONGER_BREAKING;
+      this._state = PomodoroState.LONGER_BREAKING;
     } else {
       this._counter.increment();
-      this._pomodoroState = PomodoroState.BREAKING;
+      this._state = PomodoroState.BREAKING;
     }
 
     this._restartStopwatch();
@@ -92,11 +92,11 @@ class PomodoroImpl implements Pomodoro {
 
   @override
   void endBreak() {
-    if (this._pomodoroState == PomodoroState.LONGER_BREAKING) {
+    if (this._state == PomodoroState.LONGER_BREAKING) {
       this._counter.reset();
-      this._pomodoroState = PomodoroState.FINISHED;
+      this._state = PomodoroState.FINISHED;
     } else {
-      this._pomodoroState = PomodoroState.CONCENTRATING;
+      this._state = PomodoroState.CONCENTRATING;
     }
 
     this._restartStopwatch();
