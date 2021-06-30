@@ -233,4 +233,43 @@ void main() {
       expect(pomodoro.state, PomodoroState.CONCENTRATING);
     });
   });
+
+  group('Integration Test', () {
+    test('Tests simple integration pattern', () async {
+      final PomodoroImpl pomodoro = PomodoroImpl.from(Configuration()
+          .setConcentrationMinutes(1)
+          .setBreakMinutes(1)
+          .setLongerBreakMinutes(2)
+          .setCountUntilLongerBreak(3));
+
+      int breakCount = 0;
+      while (pomodoro.performs()) {
+        expect(pomodoro.state, PomodoroState.CONCENTRATING);
+
+        if (pomodoro.shouldStartBreak()) {
+          breakCount++;
+          pomodoro.startBreak();
+
+          expect(
+              pomodoro.state,
+              breakCount > 3
+                  ? PomodoroState.LONGER_BREAKING
+                  : PomodoroState.BREAKING);
+
+          while (pomodoro.isBreaking()) {
+            if (pomodoro.shouldEndBreak()) {
+              pomodoro.endBreak();
+              expect(
+                  pomodoro.state,
+                  breakCount > 3
+                      ? PomodoroState.FINISHED
+                      : PomodoroState.CONCENTRATING);
+            }
+          }
+        }
+      }
+
+      expect(pomodoro.state, PomodoroState.FINISHED);
+    }, timeout: Timeout(Duration(minutes: 13)));
+  });
 }
