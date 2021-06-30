@@ -193,4 +193,44 @@ void main() {
       expect(pomodoro.state, PomodoroState.FINISHED);
     });
   });
+
+  group('Test startBreakIfShould()', () {
+    test('Tests when should start break', () async {
+      final PomodoroImpl pomodoro =
+          PomodoroImpl.from(Configuration().setConcentrationMinutes(1));
+
+      pomodoro.performs();
+      await new Future.delayed(new Duration(minutes: 1));
+      pomodoro.startBreakIfShould();
+      expect(pomodoro.state, PomodoroState.BREAKING);
+    }, timeout: Timeout(Duration(minutes: 2)));
+
+    test('Tests whe should not start break', () {
+      final PomodoroImpl pomodoro = PomodoroImpl.from(Configuration());
+
+      pomodoro.performs();
+      pomodoro.startBreakIfShould();
+      expect(pomodoro.state, PomodoroState.CONCENTRATING);
+    });
+
+    test('Tests when should start longer break', () async {
+      final PomodoroImpl pomodoro = PomodoroImpl.from(Configuration()
+          .setConcentrationMinutes(1)
+          .setCountUntilLongerBreak(0));
+
+      pomodoro.performs();
+      await new Future.delayed(new Duration(minutes: 1));
+      pomodoro.startBreakIfShould();
+      expect(pomodoro.state, PomodoroState.LONGER_BREAKING);
+    }, timeout: Timeout(Duration(minutes: 2)));
+
+    test('Tests when should not start longer break', () {
+      final PomodoroImpl pomodoro =
+          PomodoroImpl.from(Configuration().setCountUntilLongerBreak(0));
+
+      pomodoro.performs();
+      pomodoro.startBreakIfShould();
+      expect(pomodoro.state, PomodoroState.CONCENTRATING);
+    });
+  });
 }
