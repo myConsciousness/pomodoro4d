@@ -1,6 +1,6 @@
 [![Dart](https://github.com/myConsciousness/pomodoro4d/actions/workflows/dart.yml/badge.svg?branch=main)](https://github.com/myConsciousness/pomodoro4d/actions/workflows/dart.yml)
 
-# 1. pomodoro4d
+# 1. Pomodoro4D
 
 ## 1.1. What is it?
 
@@ -8,7 +8,7 @@
 
 <!-- TOC -->
 
-- [1. pomodoro4d](#1-pomodoro4d)
+- [1. Pomodoro4D](#1-pomodoro4d)
   - [1.1. What is it?](#11-what-is-it)
   - [1.2. Motivation](#12-motivation)
   - [1.3. How To Use](#13-how-to-use)
