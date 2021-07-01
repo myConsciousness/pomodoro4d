@@ -7,6 +7,7 @@ import 'package:pomodoro4d/src/config/configuration.dart';
 import 'package:pomodoro4d/src/pomodoro.dart';
 import 'package:pomodoro4d/src/pomodoro_state.dart';
 
+/// The class that implements the [Pomodoro] and [BreakSupport].
 class PomodoroImpl implements Pomodoro {
   /// The configuration
   final Configuration _configuration;
