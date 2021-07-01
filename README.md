@@ -146,6 +146,6 @@ Regardless of the means or content of communication, I would love to hear from y
 
 - [Creator Profile](https://github.com/myConsciousness)
 - [Creator Website](https://myconsciousness.github.io)
-- [License](https://github.com/myConsciousness/pomodoro4d/blob/master/LICENSE)
+- [License](https://github.com/myConsciousness/pomodoro4d/blob/main/LICENSE)
 - [Release Note](https://github.com/myConsciousness/pomodoro4d/releases)
 - [File a Bug](https://github.com/myConsciousness/pomodoro4d/issues)
