@@ -6,6 +6,7 @@ import 'package:pomodoro4d/src/config/basic_configuration.dart';
 
 /// The class that represents the configuration that Pomodoro refers to at runtime.
 abstract class Configuration {
+  /// The factory constructor.
   factory Configuration() => BasicConfiguration.newInstance();
 
   /// Sets the [concentrationMinutes] and returns this instance.
