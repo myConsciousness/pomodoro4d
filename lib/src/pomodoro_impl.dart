@@ -103,20 +103,6 @@ class PomodoroImpl implements Pomodoro {
     this._restartStopwatch();
   }
 
-  @override
-  void startBreakIfShould() {
-    if (this.shouldStartBreak()) {
-      this.startBreak();
-    }
-  }
-
-  @override
-  void endBreakIfShould() {
-    if (this.shouldEndBreak()) {
-      this.endBreak();
-    }
-  }
-
   /// Restarts the stopwatch
   void _restartStopwatch() {
     this._stopwatch.reset();
