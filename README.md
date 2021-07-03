@@ -14,7 +14,6 @@
   - [1.3. How To Use](#13-how-to-use)
     - [1.3.1. Create Pomodoro instance with configuration](#131-create-pomodoro-instance-with-configuration)
     - [1.3.2. Start Pomodoro cycle](#132-start-pomodoro-cycle)
-      - [1.3.2.1. Simplified implementation](#1321-simplified-implementation)
   - [1.4. License](#14-license)
   - [1.5. More Information](#15-more-information)
 
@@ -98,32 +97,6 @@ class DemoPomodoro {
                         pomodoro.endBreak();
                     }
                 }
-            }
-        }
-    }
-}
-```
-
-#### 1.3.2.1. Simplified implementation
-
-```dart
-class DemoPomodoro {
-
-    void main() {
-
-        final Configuration configuration = Configuration()
-                                                .setConcentrationMinutes(25)
-                                                .setBreakMinutes(5)
-                                                .setLongerBreakMinutes(15)
-                                                .setCountUntilLongerBreak(4);
-
-        final Pomodoro pomodoro = Pomodoro(configuration);
-
-        while (pomodoro.performs()) {
-            pomodoro.startBreakIfShould();
-
-            while (pomodoro.isBreaking()) {
-              pomodoro.endBreakIfShould();
             }
         }
     }
