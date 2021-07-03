@@ -1,6 +1,6 @@
 name: pomodoro4d
 description: This is a Pomodoro Technique binding library for the Dart language licensed under BSD 3-Clause.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/myConsciousness/pomodoro4d
 
 environment:
