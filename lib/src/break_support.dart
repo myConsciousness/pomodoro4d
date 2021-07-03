@@ -18,10 +18,4 @@ abstract class BreakSupport {
 
   ///  Ends the break.
   void endBreak();
-
-  ///  Starts the break if should start.
-  void startBreakIfShould();
-
-  /// Ends the break if should end.
-  void endBreakIfShould();
 }
